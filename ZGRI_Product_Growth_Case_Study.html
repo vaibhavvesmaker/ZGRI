@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Independent ZGRI product growth case study by Vaibhav Vesmaker">
+  <title>ZGRI Product Growth Case Study</title>
+</head>
+<body>
+  <div class="stApp">
+    <main data-testid="stAppViewContainer">
+      <div data-testid="stAppViewBlockContainer">
+        <style>
+:root {
+  --navy: #101B3D;
+  --navy-2: #17264E;
+  --coral: #FF5B61;
+  --coral-dark: #DB3F49;
+  --teal: #0B858A;
+  --mint: #DFF5F1;
+  --lavender: #F5F3FA;
+  --ice: #F4F8FB;
+  --ink: #17213A;
+  --muted: #59677F;
+  --line: #DDE4EC;
+  --white: #FFFFFF;
+}
+
+html {scroll-behavior: smooth;}
+body, .stApp, [data-testid="stAppViewContainer"] {
+  background: var(--white) !important;
+  color: var(--ink) !important;
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif !important;
+}
+header[data-testid="stHeader"],
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+[data-testid="stSidebar"],
+[data-testid="stSidebarCollapsedControl"],
+footer {display: none !important;}
+[data-testid="stAppViewContainer"] > .main {margin-left: 0 !important;}
+[data-testid="stAppViewBlockContainer"] {
+  max-width: 1240px !important;
+  padding: 1.25rem 2.25rem 4rem !important;
+}
+.block-container {padding-top: 1.25rem !important;}
+h1, h2, h3, h4, p {font-family: inherit !important;}
+a {text-decoration: none !important;}
+
+.topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 2px 18px; border-bottom: 1px solid var(--line);
+  color: var(--navy); font-size: .78rem; font-weight: 800;
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.topbar .candidate {color: var(--muted); font-weight: 700; letter-spacing: .03em;}
+
+.hero {
+  margin-top: 22px; border-radius: 26px; overflow: hidden;
+  background: linear-gradient(128deg, var(--navy) 0%, #1D3568 66%, #0D7F83 135%);
+  padding: 54px 58px 48px; position: relative; color: white;
+  box-shadow: 0 18px 50px rgba(16, 27, 61, .16);
+}
+.hero:after {
+  content: ""; position: absolute; width: 310px; height: 310px;
+  right: -115px; top: -120px; border: 54px solid rgba(255,255,255,.07);
+  border-radius: 50%;
+}
+.kicker {
+  color: #79E0DE; font-size: .78rem; font-weight: 850;
+  text-transform: uppercase; letter-spacing: .14em; margin-bottom: 16px;
+}
+.hero h1 {
+  color: white !important; font-size: 3.8rem;
+  max-width: 930px; line-height: .99; letter-spacing: -.055em;
+  margin: 0 0 22px; position: relative; z-index: 2;
+}
+.hero p {
+  color: #E6EEF8 !important; font-size: 1.16rem; line-height: 1.62;
+  max-width: 830px; margin: 0; position: relative; z-index: 2;
+}
+.hero .signature {
+  margin-top: 27px; color: #B9C8DE !important; font-size: .88rem;
+  font-weight: 650; letter-spacing: .02em;
+}
+.thesis {
+  background: var(--coral); color: white; margin: -2px 26px 28px;
+  padding: 22px 30px; border-radius: 0 0 18px 18px;
+  font-size: 1.08rem; line-height: 1.55; font-weight: 750;
+  box-shadow: 0 13px 28px rgba(255, 91, 97, .18);
+}
+
+.section {padding: 72px 0 4px; scroll-margin-top: 18px;}
+.section-label {
+  color: var(--coral-dark); font-size: .76rem; font-weight: 850;
+  letter-spacing: .13em; text-transform: uppercase; margin-bottom: 10px;
+}
+.section h2 {
+  color: var(--navy) !important; font-size: 2.65rem;
+  letter-spacing: -.045em; line-height: 1.08; margin: 0 0 13px;
+}
+.section-intro {
+  color: var(--muted); max-width: 900px; font-size: 1.08rem;
+  line-height: 1.65; margin-bottom: 28px;
+}
+
+.grid-2 {display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px;}
+.grid-3 {display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px;}
+.grid-4 {display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 15px;}
+.card {
+  border: 1px solid var(--line); background: white; border-radius: 18px;
+  padding: 22px; box-shadow: 0 7px 24px rgba(16,27,61,.055);
+}
+.card h3 {color: var(--navy) !important; font-size: 1.16rem; margin: 7px 0 10px; line-height:1.25;}
+.card p {color: var(--muted) !important; margin: 0; line-height: 1.58; font-size: .94rem;}
+.card .number {color: var(--coral); font-size: 2.05rem; font-weight: 850; letter-spacing: -.04em;}
+.card .overline {
+  color: var(--teal); font-size: .7rem; font-weight: 850;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.card.evidence {background: var(--ice); box-shadow: none;}
+.card.recommendation {border-top: 4px solid var(--coral);}
+
+.badge {
+  display: inline-flex; align-items: center; border-radius: 999px;
+  padding: 5px 9px; font-size: .66rem; font-weight: 850;
+  letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px;
+}
+.badge.fact {background: #E7F1FF; color: #1D5E9E;}
+.badge.rec {background: #FFE8E9; color: #B82F3A;}
+.badge.exp {background: var(--mint); color: #086B70;}
+.source-ref {color: var(--coral-dark); font-weight: 850; font-size: .75rem;}
+
+.chain {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+  margin: 24px 0 6px;
+}
+.chain-step {
+  background: var(--navy); color: white; border-radius: 16px;
+  padding: 20px 18px; min-height: 118px; position: relative;
+}
+.chain-step:not(:last-child):after {
+  content: "→"; position: absolute; right: -17px; top: 42%; z-index: 3;
+  background: white; color: var(--coral); width: 23px; height: 23px;
+  border-radius: 50%; text-align: center; line-height: 22px; font-weight: 900;
+}
+.chain-step small {color: #7BDAD8; font-weight: 800; text-transform: uppercase; letter-spacing:.08em;}
+.chain-step strong {display: block; margin-top: 8px; font-size: 1.05rem; line-height:1.25;}
+.chain-step span {display:block; color:#C9D4E7; margin-top:6px; font-size:.79rem; line-height:1.35;}
+
+.callout {
+  background: var(--lavender); border-left: 5px solid var(--coral);
+  border-radius: 0 16px 16px 0; padding: 22px 26px; margin: 24px 0;
+  color: var(--navy); font-size: 1.03rem; line-height: 1.6;
+}
+.callout strong {color: var(--coral-dark);}
+
+.workflow {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  counter-reset: flow;
+}
+.flow-step {
+  counter-increment: flow; background: white; border: 1px solid var(--line);
+  border-radius: 18px; padding: 21px 20px; min-height: 150px;
+  position: relative;
+}
+.flow-step:before {
+  content: counter(flow); display: flex; align-items:center; justify-content:center;
+  width: 31px; height: 31px; background: var(--coral); color: white;
+  border-radius: 9px; font-weight: 850; margin-bottom: 15px;
+}
+.flow-step h3 {color:var(--navy)!important; margin:0 0 7px; font-size:1.05rem;}
+.flow-step p {color:var(--muted)!important; margin:0; line-height:1.48; font-size:.88rem;}
+
+.metric-hero {
+  display:grid; grid-template-columns: 1.12fr .88fr; gap: 22px;
+  background: var(--navy); color:white; padding: 30px; border-radius: 22px;
+  margin-bottom: 22px;
+}
+.metric-hero h3 {color:white!important; font-size:1.65rem; margin:4px 0 10px;}
+.metric-hero p {color:#D6E0EF!important; line-height:1.55; margin:0;}
+.formula {
+  background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.16);
+  border-radius: 16px; padding: 20px; display:flex; align-items:center;
+  justify-content:center; text-align:center; font-weight:750; line-height:1.5;
+}
+.formula span {color:#86E1DE;}
+
+.table-wrap {overflow-x:auto; border:1px solid var(--line); border-radius:18px;}
+table.strategy {border-collapse:collapse; width:100%; background:white; font-size:.88rem;}
+table.strategy th {
+  background:var(--navy); color:white; text-align:left; padding:14px 15px;
+  font-size:.71rem; text-transform:uppercase; letter-spacing:.07em;
+}
+table.strategy td {padding:14px 15px; border-bottom:1px solid var(--line); color:var(--muted); vertical-align:top; line-height:1.4;}
+table.strategy tr:last-child td {border-bottom:0;}
+table.strategy td:first-child {color:var(--navy); font-weight:800; white-space:nowrap;}
+table.strategy .primary {color:var(--coral-dark); font-weight:800;}
+
+.gate {
+  display:grid; grid-template-columns: repeat(3,1fr); gap:0;
+  border:1px solid var(--line); border-radius:20px; overflow:hidden;
+}
+.gate > div {padding:24px; background:white; border-right:1px solid var(--line);}
+.gate > div:last-child {border-right:0;}
+.gate small {color:var(--coral-dark); font-weight:850; letter-spacing:.08em; text-transform:uppercase;}
+.gate h3 {color:var(--navy)!important; margin:8px 0; font-size:1.12rem;}
+.gate p {color:var(--muted)!important; font-size:.88rem; line-height:1.5; margin:0;}
+
+.proof {
+  background: linear-gradient(135deg, var(--lavender), var(--ice));
+  border:1px solid var(--line); border-radius:20px; padding:28px;
+}
+.proof strong {font-size:1.75rem; color:var(--navy); letter-spacing:-.04em;}
+.proof h3 {color:var(--coral-dark)!important; font-size:.9rem; text-transform:uppercase; letter-spacing:.08em; margin:8px 0;}
+.proof p {color:var(--muted)!important; font-size:.9rem; line-height:1.55; margin:0;}
+
+.closing {
+  margin-top:68px; background:var(--coral); border-radius:24px;
+  color:white; padding:38px 42px; text-align:left;
+}
+.closing h2 {color:white!important; font-size:2.35rem; margin:0 0 12px; letter-spacing:-.045em;}
+.closing p {color:white!important; opacity:.94; max-width:910px; font-size:1.12rem; line-height:1.6; margin:0;}
+
+.sources {background:var(--ice); border-radius:20px; padding:28px; margin-top:28px;}
+.sources h3 {color:var(--navy)!important; margin:0 0 14px;}
+.sources ol {margin:0; padding-left:22px; columns:2; column-gap:34px;}
+.sources li {break-inside:avoid; color:var(--muted); padding:0 0 9px 4px; font-size:.83rem; line-height:1.4;}
+.sources a {color:#235A9F!important; font-weight:700;}
+.disclosure {font-size:.78rem; color:var(--muted); line-height:1.5; margin-top:18px;}
+
+@media (max-width: 900px) {
+  [data-testid="stAppViewBlockContainer"] {padding:1rem 1rem 3rem!important;}
+  .hero {padding:38px 28px 34px;}
+  .hero h1 {font-size: 2.75rem;}
+  .section h2 {font-size: 2.15rem;}
+  .thesis {margin:0 12px 18px;}
+  .grid-4, .grid-3, .workflow {grid-template-columns:repeat(2,1fr);}
+  .chain {grid-template-columns:repeat(2,1fr);}
+  .chain-step:after {display:none;}
+  .metric-hero {grid-template-columns:1fr;}
+}
+@media (max-width: 620px) {
+  .hero h1 {font-size: 2.25rem;}
+  .grid-4, .grid-3, .grid-2, .workflow, .chain, .gate {grid-template-columns:1fr;}
+  .gate > div {border-right:0; border-bottom:1px solid var(--line);}
+  .gate > div:last-child {border-bottom:0;}
+  .sources ol {columns:1;}
+  .topbar {align-items:flex-start; gap:10px; flex-direction:column;}
+}
+</style>
+<div class="topbar">
+  <div>ZGRI Product Growth Case Study</div>
+  <div class="candidate">Prepared by Vaibhav Vesmaker · August 2026</div>
+</div>
+<div class="hero">
+  <div class="kicker">Independent product strategy case study</div>
+  <h1>From successful product to portfolio standard.</h1>
+  <p>How I would make Zero-Gap Renters Insurance faster to launch, easier for
+  residents to complete, and easier for multifamily operators to expand across
+  their portfolios.</p>
+  <p class="signature">Product strategy · workflow design · metrics · execution</p>
+</div>
+<div class="thesis">Make the first property fast to launch. Make continuous
+protection measurable. Make portfolio expansion the obvious next decision.</div>
+<div class="section" id="opportunity">
+  <div class="section-label">01 · THE OPPORTUNITY</div>
+  <h2>The category is validated. The next advantage is repeatable scale.</h2>
+  <div class="section-intro">The public evidence suggests meaningful demand, real operational value, and a differentiated carrier-connectivity asset. These figures are company-reported—not internal data or independently audited market estimates.</div>
+</div>
+<div class="grid-4">
+  <div class="card evidence"><span class="badge fact">Public evidence</span>
+    <div class="number">180%</div><h3>2024 business growth</h3>
+    <p>TheGuarantors reports that ZGRI drove 180% growth in its renters-insurance
+    business in 2024. <a class="source-ref" href="https://www.theguarantors.com/blog/company-updates/theguarantors-acquires-tech-to-close-renters-insurance-gap" target="_blank" title="TheGuarantors — Covie technology acquisition announcement">[2]</a></p></div>
+  <div class="card evidence"><span class="badge fact">Public evidence</span>
+    <div class="number">90%+</div><h3>Provider connectivity</h3>
+    <p>The acquired verification technology is reported to integrate directly
+    with more than 90% of insurance providers. <a class="source-ref" href="https://www.theguarantors.com/blog/company-updates/theguarantors-acquires-tech-to-close-renters-insurance-gap" target="_blank" title="TheGuarantors — Covie technology acquisition announcement">[2]</a></p></div>
+  <div class="card evidence"><span class="badge fact">Public evidence</span>
+    <div class="number">Up to 40%</div><h3>Mid-lease cancellation</h3>
+    <p>TheGuarantors reports that up to 40% of renters may cancel policies
+    mid-lease—the gap that point-in-time checks miss. <a class="source-ref" href="https://www.theguarantors.com/blog/company-updates/theguarantors-acquires-tech-to-close-renters-insurance-gap" target="_blank" title="TheGuarantors — Covie technology acquisition announcement">[2]</a></p></div>
+  <div class="card evidence"><span class="badge fact">Customer testimonial</span>
+    <div class="number">~15 hrs</div><h3>Saved per property / month</h3>
+    <p>A customer testimonial reports about 15 administrative hours saved per
+    property each month. <a class="source-ref" href="https://www.theguarantors.com/products-zero-gap-renters-insurance" target="_blank" title="TheGuarantors — Zero-Gap Renters Insurance">[1]</a></p></div>
+</div>
+<div class="callout"><strong>My strategic interpretation:</strong> ZGRI does not
+need consumer-style virality. Its strongest growth loop is enterprise land-and-expand:
+win an operator, launch a first cohort, prove the operational and protection outcomes,
+and make portfolio-wide rollout low-risk and low-effort.</div>
+<div class="chain">
+  <div class="chain-step"><small>Land</small><strong>Operator contract</strong><span>Secure portfolio access and agreed success criteria.</span></div>
+  <div class="chain-step"><small>Launch</small><strong>First properties live</strong><span>Use reusable integrations, rules, and implementation gates.</span></div>
+  <div class="chain-step"><small>Prove</small><strong>Measured operator value</strong><span>Show protection, resident completion, time saved, and trust.</span></div>
+  <div class="chain-step"><small>Expand</small><strong>Portfolio standard</strong><span>Roll out in waves with a repeatable property playbook.</span></div>
+</div>
+<div class="section" id="market">
+  <div class="section-label">02 · MARKET &amp; PRODUCT THESIS</div>
+  <h2>ZGRI wins when compliance disappears into the operating workflow.</h2>
+  <div class="section-intro">The market already validates embedded enrollment, automated tracking, compliance visibility, and property-level protection. ZGRI&#x27;s opportunity is to combine those expectations with continuous carrier-connected monitoring and operator-specific orchestration.</div>
+</div>
+<div class="table-wrap"><table class="strategy"><thead><tr><th>Benchmark</th><th>What the market validates</th><th>Strategic lesson</th></tr></thead><tbody><tr><td>Yardi ResidentShield</td><td>Automated tracking inside Voyager; enrollment and proof through RentCafe.</td><td>Integration can become distribution and reduce launch friction. <a class="source-ref" href="https://www.yardi.com/product/residentshield-insurance/" target="_blank" title="Yardi — ResidentShield Insurance">[3]</a></td></tr><tr><td>Assurant Cover360</td><td>Text/email enrollment, pay-with-rent or outside proof, continuous tracking, liability-only fallback.</td><td>Resident choice and automated enforcement can coexist. <a class="source-ref" href="https://www.assurant.com/property-managers/renters-insurance/cover-360" target="_blank" title="Assurant — Cover360">[4]</a></td></tr><tr><td>Assurant scale</td><td>Assurant reports 3M+ units covered and adoption by three of the top five property managers.</td><td>The category can operate at enterprise portfolio scale. <a class="source-ref" href="https://www.assurant.com/property-managers" target="_blank" title="Assurant — Property Manager Solutions">[5]</a></td></tr><tr><td>RealPage</td><td>Insurance is embedded in OneSite with status tracking, compliance updates, and noncompliance flags.</td><td>Operators expect insurance to live inside the property stack. <a class="source-ref" href="https://www.realpage.com/renters-insurance/" target="_blank" title="RealPage — Renters Insurance">[6]</a></td></tr><tr><td>ZGRI opportunity</td><td>HO4 renters insurance + digital compliance monitoring + tenant liability waiver + always-on policy checks.</td><td>Own the continuous protection outcome—not only policy sale or document collection. <a class="source-ref" href="https://www.theguarantors.com/products-zero-gap-renters-insurance" target="_blank" title="TheGuarantors — Zero-Gap Renters Insurance">[1]</a></td></tr></tbody></table></div>
+<div class="grid-3" style="margin-top:18px">
+  <div class="card recommendation"><span class="badge rec">Recommendation</span>
+    <h3>1. Make launch configurable</h3><p>Standardize the property data contract,
+    coverage rules, notices, resident events, and go-live checklist. The goal is
+    configuration—not custom implementation for every operator.</p></div>
+  <div class="card recommendation"><span class="badge rec">Recommendation</span>
+    <h3>2. Make the resident path effortless</h3><p>Trigger the right message at the
+    right lease moment, explain the exact requirement, and let the resident buy,
+    connect, or correct coverage with minimal re-entry.</p></div>
+  <div class="card recommendation"><span class="badge rec">Recommendation</span>
+    <h3>3. Make value provable</h3><p>Give every pilot a baseline and operator-level
+    scorecard: launch speed, continuous protection, resident completion, manual work,
+    exceptions, and expansion readiness.</p></div>
+</div>
+<div class="section" id="workflow">
+  <div class="section-label">03 · PRODUCT WORKFLOW</div>
+  <h2>Design one continuous journey—from operator setup through portfolio proof.</h2>
+  <div class="section-intro">The product is a multi-user operating system: operator data and requirements, resident choices, carrier evidence, rules, exception handling, and auditable outcome reporting must stay synchronized throughout the lease.</div>
+</div>
+<div class="workflow">
+  <div class="flow-step"><h3>Configure</h3><p>Map operator, property, lease, unit,
+  resident, coverage, notice, and waiver requirements.</p></div>
+  <div class="flow-step"><h3>Activate</h3><p>Trigger residents at the correct lease
+  event through the approved channel, language, and deadline.</p></div>
+  <div class="flow-step"><h3>Choose</h3><p>Purchase HO4, connect an existing policy,
+  or enter an approved operator protection path.</p></div>
+  <div class="flow-step"><h3>Verify</h3><p>Match policyholder, address, effective
+  dates, coverage limits, and required interested-party details.</p></div>
+  <div class="flow-step"><h3>Monitor & resolve</h3><p>Detect change or lapse, apply
+  deterministic rules, automate clear cases, and route ambiguity with evidence.</p></div>
+  <div class="flow-step"><h3>Prove & expand</h3><p>Report protection, resident experience,
+  operations, and economics by property; then roll out the next cohort.</p></div>
+</div>
+<div style='height:18px'></div><div class="table-wrap"><table class="strategy"><thead><tr><th>Workflow I would own</th><th>Happy path</th><th>Primary measure</th><th>Product enabler</th></tr></thead><tbody><tr><td>Operator launch</td><td>Signed program → data access → configuration → UAT → go-live</td><td>Contract-to-Live P50 / P90</td><td>Reusable data contract and launch gate</td></tr><tr><td>Resident activation</td><td>Invite → buy/connect → verify/correct → protected</td><td>Invite-to-Protection Completion</td><td>Event-triggered journey and clear correction UX</td></tr><tr><td>Continuous monitoring</td><td>Carrier event → requirement check → action → restored protection</td><td>Detection-to-Protection P50 / P90</td><td>Fresh data, policy-state engine, approved notice logic</td></tr><tr><td>Exception management</td><td>Classify → confidence → auto-resolve or review → audit</td><td>Manual Minutes per 1K Live Units</td><td>Exception taxonomy, decision rules, queue ownership</td></tr><tr><td>Portfolio expansion</td><td>Pilot scorecard → readiness decision → rollout waves → governance</td><td>Pilot-to-Portfolio Expansion</td><td>Comparable baselines and repeatable property template</td></tr></tbody></table></div>
+<div class="section" id="metrics">
+  <div class="section-label">04 · MEASUREMENT SYSTEM</div>
+  <h2>Measure the Zero-Gap promise—not just policies sold.</h2>
+  <div class="section-intro">A policy sale captures one transaction. The product promise is continuous protection across the eligible lease period. My proposed North Star therefore measures protection at the unit-day level and pairs it with resident, reliability, operational, growth, and economic guardrails.</div>
+</div>
+<div class="metric-hero">
+  <div><span class="badge rec">Proposed North Star</span>
+    <h3>Continuous Protection Rate</h3>
+    <p>The percentage of eligible occupied unit-days that end with either a verified
+    compliant policy or an approved protection path in effect. The raw count beneath
+    it is Protected Unit-Days; the rate makes portfolios and cohorts comparable.</p></div>
+  <div class="formula"><div><span>Protected eligible occupied unit-days</span><br>
+    ÷<br>All eligible occupied unit-days</div></div>
+</div>
+<div class="table-wrap"><table class="strategy"><thead><tr><th>Layer</th><th>Metric</th><th>Exact definition</th><th>Decision it supports</th></tr></thead><tbody><tr><td>Outcome</td><td><span class='primary'>Continuous Protection Rate</span></td><td>Protected eligible occupied unit-days ÷ all eligible occupied unit-days</td><td>Are we fulfilling the Zero-Gap promise?</td></tr><tr><td>Launch</td><td>Contract-to-Live P50 / P90</td><td>Days from signed implementation start to first production property</td><td>Which launch stage creates delay or variance?</td></tr><tr><td>Resident</td><td>Invite-to-Protection Completion</td><td>Residents protected by required effective date ÷ residents invited</td><td>Where does the resident journey lose completion?</td></tr><tr><td>Resident</td><td>Time to Protection P50 / P90</td><td>Time from first valid invite to verified or approved protection</td><td>Does the path become easier and faster?</td></tr><tr><td>Risk</td><td>Unprotected Unit-Days</td><td>Eligible occupied unit-days without verified or approved protection</td><td>Where is real exposure concentrated?</td></tr><tr><td>Reliability</td><td>Detection-to-Protection P50 / P90</td><td>Time from confirmed lapse/change to restored or approved protection</td><td>How long does a discovered gap remain open?</td></tr><tr><td>Automation</td><td>Straight-Through Verification</td><td>Policies verified without human review ÷ policies submitted</td><td>Are rules and data quality supporting scale?</td></tr><tr><td>Operations</td><td>Manual Minutes / 1K Live Units</td><td>Total human handling time ÷ live units × 1,000</td><td>Is cost to serve improving as volume grows?</td></tr><tr><td>Quality</td><td>False Compliance / Noncompliance</td><td>Audited incorrect decisions ÷ audited decisions, tracked separately</td><td>Are speed and automation preserving trust?</td></tr><tr><td>Expansion</td><td>Pilot-to-Portfolio Expansion</td><td>Eligible portfolio units approved for rollout after pilot ÷ eligible portfolio units</td><td>Does proof at the first properties unlock growth?</td></tr><tr><td>Economics</td><td>Contribution Margin / Protected Unit</td><td>Unit revenue less variable coverage, claims, support, and processing costs</td><td>Is growth commercially sustainable?</td></tr></tbody></table></div>
+<div class="callout"><strong>Measurement discipline:</strong> baseline first;
+segment by operator, property, PMS, carrier, resident cohort, and exception type;
+then set targets. I would not present invented internal targets before validating
+ZGRI's current data, definitions, and operating baseline.</div>
+<div class="section" id="scale">
+  <div class="section-label">05 · 10× SCALE PLAN</div>
+  <h2>Scale through repeatability—not a larger manual operation.</h2>
+  <div class="section-intro">Tenfold growth is credible only if the implementation, resident journey, monitoring, exceptions, and portfolio proof become more reusable with every operator. These are roadmap hypotheses to validate against ZGRI&#x27;s actual baseline—not claims about the current roadmap.</div>
+</div>
+<div class="table-wrap"><table class="strategy"><thead><tr><th>Priority</th><th>Product bet</th><th>First deliverable</th><th>Expected metric movement</th></tr></thead><tbody><tr><td>P0</td><td>Canonical event + metric layer</td><td>One auditable definition of live unit, protection state, lapse, exception, and resolution</td><td>Trust the funnel and North Star before optimizing them</td></tr><tr><td>P0</td><td>Implementation factory</td><td>Reusable PMS data contract, validation, rule configuration, UAT pack, and launch score</td><td>Reduce Contract-to-Live median and variance</td></tr><tr><td>P1</td><td>Resident activation engine</td><td>Event-triggered channel, timing, message, identity, and correction flows by cohort</td><td>Increase completion and shorten Time to Protection</td></tr><tr><td>P1</td><td>Exception decisioning</td><td>Pareto the top exception types; automate high-confidence cases; improve reviewer context</td><td>Reduce Manual Minutes / 1K while protecting quality</td></tr><tr><td>P1</td><td>Operator value scorecard</td><td>Property baseline, outcome trend, hours saved, risk signal, and expansion readiness</td><td>Increase Pilot-to-Portfolio Expansion</td></tr><tr><td>P2</td><td>PMS distribution layer</td><td>Productized connectors, integration monitoring, implementation docs, and marketplace partnerships</td><td>Increase reuse and lower marginal launch cost</td></tr></tbody></table></div>
+<div style="height:22px"></div>
+<div class="gate">
+  <div><small>Gate 1 · Instrument</small><h3>Can we trust the baseline?</h3>
+  <p>Metric contract, event lineage, launch-stage timestamps, exception taxonomy,
+  and quality audit are complete.</p></div>
+  <div><small>Gate 2 · Prove</small><h3>Did one intervention move the outcome?</h3>
+  <p>A controlled cohort shows improvement with no unacceptable change in false
+  decisions, complaints, incidents, or loss indicators.</p></div>
+  <div><small>Gate 3 · Repeat</small><h3>Can the next property launch more easily?</h3>
+  <p>The solution is reusable across a second operator/property cohort without
+  equivalent custom engineering or operational work.</p></div>
+</div>
+<div class="section" id="execution">
+  <div class="section-label">06 · EXECUTION MODEL</div>
+  <h2>Use the first 90 days to learn, prove, and operationalize.</h2>
+  <div class="section-intro">I would arrive with a disciplined decision process—not a prewritten feature roadmap. The initial goal is to establish truth, identify the binding constraint, run one evidence-generating intervention, and convert the learning into a repeatable launch and expansion system.</div>
+</div>
+<div class="gate">
+  <div><small>Days 1–30 · Learn</small><h3>Establish the product truth</h3>
+  <p>Shadow operators, property teams, implementation, support, risk/compliance,
+  data, and engineering. Define the journey, event model, baseline funnel, and top
+  exception Pareto.</p></div>
+  <div><small>Days 31–60 · Prove</small><h3>Attack one binding constraint</h3>
+  <p>Select the highest-impact launch, activation, or exception problem. Define
+  hypothesis, cohort, primary metric, guardrails, owner, and rollback; run the pilot.</p></div>
+  <div><small>Days 61–90 · Repeat</small><h3>Turn evidence into a system</h3>
+  <p>Codify the implementation template, telemetry, operating runbook, operator
+  scorecard, decision log, and scale/no-scale recommendation.</p></div>
+</div>
+<div style='height:22px'></div><div class="table-wrap"><table class="strategy"><thead><tr><th>Role</th><th>Tool</th><th>How I would use it responsibly</th></tr></thead><tbody><tr><td>System of record</td><td>Jira + Confluence</td><td>Outcomes, decisions, requirements, risks, owners, release evidence, and learning remain traceable.</td></tr><tr><td>Knowledge acceleration</td><td>Rovo</td><td>Search connected organizational knowledge and assist synthesis or issue decomposition—subject to company controls. <a class="source-ref" href="https://www.atlassian.com/software/jira/ai" target="_blank" title="Atlassian — AI in Jira / Rovo">[7]</a></td></tr><tr><td>Engineering acceleration</td><td>Claude Code</td><td>Support codebase analysis, changes, and tests inside the engineering review and repository-control model. <a class="source-ref" href="https://www.anthropic.com/claude-code" target="_blank" title="Anthropic — Claude Code">[8]</a></td></tr><tr><td>Capture acceleration</td><td>Wispr Flow</td><td>Optional voice-to-text for quickly drafting notes or requirements; reviewed content must be moved into the system of record. <a class="source-ref" href="https://wisprflow.ai/" target="_blank" title="Wispr Flow — Voice Dictation">[9]</a></td></tr></tbody></table></div>
+<div class="section" id="experience">
+  <div class="section-label">07 · WHY I CAN LEAD THIS WORK</div>
+  <h2>My experience maps directly to the constraints ZGRI must solve.</h2>
+  <div class="section-intro">Across retail product operations, digital automotive finance, and an early-stage technology environment, the repeatable pattern has been the same: map a complex journey, turn fragmented evidence into prioritized product work, and tie delivery to a measurable outcome.</div>
+</div>
+<div class="grid-3">
+  <div class="proof"><span class="badge exp">My experience</span><br>
+    <strong>$18M portfolio</strong><h3>American Eagle · Product operations</h3>
+    <p>Translated multi-market sourcing, purchasing, partner, and payment workflows
+    into product requirements and releases, contributing to a 26% process-efficiency
+    improvement. <b>ZGRI transfer:</b> configurable enterprise workflows, complex
+    exceptions, cross-functional launch discipline.</p></div>
+  <div class="proof"><span class="badge exp">My experience</span><br>
+    <strong>+42% completion</strong><h3>Polestar · Digital journey</h3>
+    <p>Used journey data and stakeholder evidence across a $53M portfolio to address
+    digital-financing friction. <b>ZGRI transfer:</b> resident activation funnel,
+    cohort analysis, time-to-protection, and measurable UX improvement.</p></div>
+  <div class="proof"><span class="badge exp">My experience</span><br>
+    <strong>$125K roadmap</strong><h3>CoreCentrica · Early-stage scale</h3>
+    <p>Built reusable CRM, lifecycle, delivery, and reporting workflows in a small
+    multi-client environment. <b>ZGRI transfer:</b> standardize the operating model
+    before volume multiplies complexity.</p></div>
+</div>
+<div class="closing">
+  <h2>My product point of view</h2>
+  <p>ZGRI's opportunity is not simply to sell more renters-insurance policies. It is
+  to become the continuous protection and compliance layer that operators trust
+  across the resident lifecycle. I would focus the roadmap on three measurable
+  transitions: <b>contract to live property, resident invite to continuous protection,
+  and successful pilot to portfolio standard.</b></p>
+</div>
+<div class="sources">
+  <h3>Sources</h3>
+  <ol><li><a href="https://www.theguarantors.com/products-zero-gap-renters-insurance" target="_blank">TheGuarantors — Zero-Gap Renters Insurance</a></li><li><a href="https://www.theguarantors.com/blog/company-updates/theguarantors-acquires-tech-to-close-renters-insurance-gap" target="_blank">TheGuarantors — Covie technology acquisition announcement</a></li><li><a href="https://www.yardi.com/product/residentshield-insurance/" target="_blank">Yardi — ResidentShield Insurance</a></li><li><a href="https://www.assurant.com/property-managers/renters-insurance/cover-360" target="_blank">Assurant — Cover360</a></li><li><a href="https://www.assurant.com/property-managers" target="_blank">Assurant — Property Manager Solutions</a></li><li><a href="https://www.realpage.com/renters-insurance/" target="_blank">RealPage — Renters Insurance</a></li><li><a href="https://www.atlassian.com/software/jira/ai" target="_blank">Atlassian — AI in Jira / Rovo</a></li><li><a href="https://www.anthropic.com/claude-code" target="_blank">Anthropic — Claude Code</a></li><li><a href="https://wisprflow.ai/" target="_blank">Wispr Flow — Voice Dictation</a></li></ol>
+  <div class="disclosure"><b>Evidence standard:</b> Company-reported figures and
+  customer testimonials are labeled as such. Strategic recommendations, proposed
+  metrics, priorities, workflows, and the 90-day plan are my independent analysis.
+  Experience figures are drawn from my resume and should be supported with the
+  underlying interview stories. This case study does not claim access to
+  TheGuarantors' confidential roadmap, pricing, forecasts, architecture, or internal
+  performance data.</div>
+</div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
